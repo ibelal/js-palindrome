@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Javascripts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" type="text/css" media="screen" href="script/bootstrap-material-design.min.css" />
+
+</head>
+
+<body class="container">
+    <div class="form-group">
+        <label for="input" class="bmd-label-floating">Enter text</label>
+        <input type="text" name="input-palindrome" id="input-palindrome" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" id="check-palindrome" class="btn btn-primary btn-raised">Check Palindrome</button>
+    </div>
+    <blockquote class="blockquote">
+        <p class="mb-0">Result: <span class="font-weight-light text-primary " id="result-palindrome"></span> </p>
+    </blockquote>
+
+    <div class="form-group">
+        <button type="submit" id="check-series" class="btn btn-primary btn-raised">Check F-Series</button>
+    </div>
+    <blockquote class="blockquote">
+        <p class="mb-0">Result: <span class="font-weight-light text-primary " id="result-series"></span> </p>
+    </blockquote>
+
+    <hr />
+
+    <div class="card">
+        <div class="card-header">
+            Swap Value
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="num1" class="bmd-label-floating">Number 1</label>
+                    <input type="text" class="form-control" id="num1">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="num2" class="bmd-label-floating">Number 2</label>
+                    <input type="text" class="form-control" id="num2">
+                </div>
+                <div class="form-group col-md-4 bmd-form-group">
+                    <button type="submit" id="swap-value" class="btn btn-primary btn-raised">Swap Value</button>
+                </div>
+            </div>
+            <blockquote class="blockquote">
+                <p class="mb-0">Result: <span class="font-weight-light " id="result-swap"></span></p>
+            </blockquote>
+
+        </div>
+    </div>
+
+
+    <!-- jquery and bootstrap js files -->
+    <script src="script/jquery-3.3.1.min.js"></script>
+    <script src="script/popper.js"></script>
+    <script src="script/bootstrap-material-design.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('body').bootstrapMaterialDesign();
+        });  
+    </script>
+    <script src="main.js"></script>
+    <script>        
+        $("#check-palindrome").click(function () {
+            var result = '';
+            if (valid($("#input-palindrome"))) {
+                result = palindrome(valid($("#input-palindrome")));
+
+                if (result) {
+                    $('#result-palindrome').removeClass("text-danger").addClass("text-primary").text('This is Palindrome.');
+                } else {
+                    $('#result-palindrome').removeClass("text-danger").addClass("text-primary").text('Not Palindrome.');
+                }
+            } else {
+                $('#result-palindrome').removeClass("text-primary").addClass("text-danger").text('Enter text');
+            }
+        });
+
+        $("#check-series").click(function () {
+            var result = '';
+            if (valid($("#input-palindrome"))) {
+                result = series(valid($("#input-palindrome")));
+                $('#result-series').removeClass("text-danger").addClass("text-primary").text(result);
+            } else {
+                $('#result-series').removeClass("text-primary").addClass("text-danger").text('Enter number');
+            }
+        });
+
+        $("#swap-value").click(function(){
+            var result = '';
+            if(valid($("#num1")) && valid($("#num2"))){
+                result = swap(valid($("#num1")), valid($("#num2")));
+                $('#result-swap').removeClass("text-danger").addClass("text-primary").text(result.x + ", "+result.y );
+            }else{
+                $('#result-swap').addClass("text-danger").text('Enter both numbers to swap value');
+            }
+        })
+    </script>
+</body>
+
+</html>
